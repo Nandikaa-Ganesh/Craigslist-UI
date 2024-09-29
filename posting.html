@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Type Selection</title>
+    <style>
+        /* Gradient background */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #315c5f, #0f1c2e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Form container styling */
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+
+        /* Heading with black color */
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: black; /* Changed to black */
+        }
+
+        /* Label and input spacing */
+        label {
+            display: block;
+            font-size: 18px;
+            margin: 20px 0; /* Added margin for space between each line */
+            color: #444444;
+        }
+
+        /* Adding space between form elements */
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Submit button styling */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background-color: #0f1c2e;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 25px;
+        }
+
+        /* Submit button hover effect */
+        .submit-btn:hover {
+            background-color: #275089;
+
+        }
+
+        /* Responsive form for smaller devices */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            label {
+                font-size: 16px;
+            }
+
+            .submit-btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Select the Type of Posting</h1>
+        <form>
+            <label>
+                <input type="radio" name="post_type" value="job_offered">
+                Job offered
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="gig_offered">
+                Gig offered
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="resume_job_wanted">
+                Resume / Job wanted
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="housing_offered">
+                Housing offered
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="housing_wanted">
+                Housing wanted
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="for_sale_by_owner">
+                For sale by owner
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="for_sale_by_dealer">
+                For sale by dealer
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="wanted_by_owner">
+                Wanted by owner
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="wanted_by_dealer">
+                Wanted by dealer
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="service_offered">
+                Service offered
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="community">
+                Community
+            </label>
+            <label>
+                <input type="radio" name="post_type" value="event_class">
+                Event / Class
+            </label>
+            <button type="button" class="submit-btn" onclick="window.location.href='sale.html';">Continue</button>
+            <button type="button" class="submit-btn"  onclick="window.location.href='trial.html'">Go Back Home</button>
+        </form>
+    </div>
+
+</body>
+</html>

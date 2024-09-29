@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Details</title>
+    <style>
+        /* Gradient background */
+        body {
+            background: linear-gradient(to right, #315c5f, #0f1c2e);
+            font-family: inter;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Form container */
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Form title */
+        h2 {
+            text-align: center;
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        /* Form layout for labels and inputs */
+        form {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-gap: 15px;
+            align-items: start;
+            font-family: inter;
+        }
+
+        /* Left-aligned labels */
+        label {
+            text-align: left;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        /* Form inputs full-width */
+        input, textarea, select {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inter;
+        }
+
+        /* Full width textarea */
+        textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        /* Checkbox group centered */
+        .checkbox-group {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center; /* Center the checkboxes horizontally */
+            margin-top: 20px;
+        }
+
+        /* Align the checkboxes vertically and center them */
+        .checkbox-container {
+            display: flex;
+            flex-direction: column; /* Make checkboxes stack vertically */
+            align-items: flex-start; /* Align everything to the left */
+        }
+
+        /* Ensure checkbox label and checkbox are aligned */
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px; /* Adjust margin for better alignment */
+        }
+
+        /* Submit Button */
+        button {
+            grid-column: span 2;
+            padding: 10px;
+            background-color: #0f1c2e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: ease-in-out;
+        }
+
+        button:hover {
+            
+            background-color: #004f9a;
+        }
+
+        /* Link styling */
+        a {
+            color: #1c63b8;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+
+        a:hover {
+            color: #004f9a;
+        }
+
+        /* Popup styling */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Ad Details</h2>
+    <form id="adForm">
+        <!-- Post Title -->
+        <label for="post-title">Post Title:</label>
+        <input type="text" id="post-title" name="post-title" placeholder="Enter post title" required>
+
+        <!-- Price -->
+        <label for="price">Price (Rs):</label>
+        <input type="text" id="price" name="price" placeholder="Enter price" required>
+
+        <!-- City/Location -->
+        <label for="location">City or Neighborhood:</label>
+        <input type="text" id="location" name="location" placeholder="Enter city/neighborhood" required>
+
+        <!-- Zip Code -->
+        <label for="zipcode">Zip Code:</label>
+        <input type="text" id="zipcode" name="zipcode" placeholder="Enter zip code" required>
+
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Enter post description" required></textarea>
+
+        <!-- Ad Language -->
+        <label for="ad-language">Ad Language:</label>
+        <select id="ad-language" name="ad-language">
+            <option value="en">English</option>
+            <option value="tm">Tamil</option>
+            <option value="hn">Hindi</option>
+
+            <!-- Add more languages as needed -->
+        </select>
+
+        <!-- Checkbox group -->
+        <div class="checkbox-group">
+            <div class="checkbox-container">
+                <div class="checkbox-item">
+                    <input type="checkbox" name="cryptocurrency-ok" id="cryptocurrency-ok">
+                    <label for="cryptocurrency-ok">Cryptocurrency OK</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" name="delivery-available" id="delivery-available">
+                    <label for="delivery-available">Delivery Available</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" name="more-ads" id="more-ads">
+                    <label for="more-ads">Include "More ads from this user" link</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <!-- Phone -->
+        <label for="phone">Phone (Optional):</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+
+        <!-- Submit Button -->
+        <button type="submit">Post Ad</button>
+
+        <button onclick="window.location.href='trial.html'">Go Back Home</button>
+    </form>
+</div>
+
+<!-- Confirmation Popup -->
+<div class="popup" id="confirmationPopup">
+    <div class="popup-content">
+        <h3>Confirmation</h3>
+        <p>Your ad has been posted successfully!</p>
+        <button id="confirmButton">OK</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById('adForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting immediately
+        document.getElementById('confirmationPopup').style.display = 'flex'; // Show the confirmation popup
+    });
+
+    document.getElementById('confirmButton').addEventListener('click', function() {
+        window.location.href = 'trial.html'; // Redirect to home page on clicking OK
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #a6c2e6;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #0c1a34;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9fafb;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 1.75rem;
+            color: #0c1a34;
+            margin-bottom: 15px;
+        }
+
+        .job-card {
+            background-color: #adc2e9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-card h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #0c1a34;
+        }
+
+        .job-card p {
+            margin: 5px 0;
+            color: #1e1f24;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .personal-details {
+            margin-bottom: 20px;
+        }
+
+        .edit-btn {
+            background-color: #0b233c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding:10px 15px;
+            cursor: pointer;
+            font-family: Inter;
+
+        }
+        .edit-btn:hover{
+            color:#0b233c;
+            background-color: white;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Layout */
+        .main-content {
+            margin-left: 20px;
+            flex: 1;
+        }
+
+        .sidebar-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Edit Form */
+        .edit-form {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .edit-form input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .save-btn {
+            background-color: #0b233c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding:10px 15px;
+            cursor: pointer;
+            font-family: Inter;
+        }
+        .save-btn:hover{
+            color:#0b233c;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="personal-details">
+            <h3 class="sidebar-title">Personal Details</h3>
+            <p><strong>Name:</strong> <span id="user-name">John Doe</span></p>
+            <p><strong>Email:</strong> <span id="user-email">johndoe@example.com</span></p>
+            <button class="edit-btn" onclick="toggleEditForm()">Edit</button>
+
+            <div class="edit-form" id="edit-form">
+                <input type="text" id="edit-name" placeholder="Enter your name" />
+                <input type="email" id="edit-email" placeholder="Enter your email" />
+                <button class="save-btn" onclick="saveDetails()">Save</button>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Filters</h2>
+            <p>Job Type: <strong>All</strong></p>
+            <p>Location: <strong>Any</strong></p>
+            <p>Experience Level: <strong>Any</strong></p>
+        </div>
+        <div>
+            <button class="edit-btn" onclick="window.location.href='search.html'">Go to Home</button>
+        </div>
+    </div>
+
+    <div class="container main-content">
+        <div class="header">
+            <h1>Your Account Details</h1>
+        </div>
+
+        <div class="section">
+            <h2>Applied Jobs</h2>
+            <div class="job-card" onclick="openPopup('Software Engineer', 'Company: XYZ Inc. \nApplied on: 2024-09-25');">
+                <h3>Software Engineer</h3>
+                <p>Company: XYZ Inc.</p>
+                <p>Applied on: 2024-09-25</p>
+            </div>
+            <div class="job-card" onclick="openPopup('Frontend Developer', 'Company: ABC Corp. \nApplied on: 2024-09-22');">
+                <h3>Frontend Developer</h3>
+                <p>Company: ABC Corp.</p>
+                <p>Applied on: 2024-09-22</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Your Postings</h2>
+            <div class="job-card" onclick="openPopup('Graphic Designer Needed', 'Looking for a creative designer to join our team.');">
+                <h3>Graphic Designer Needed</h3>
+                <p>Posted on: 2024-09-20</p>
+            </div>
+            <div class="job-card" onclick="openPopup('Data Analyst', 'Seeking a skilled data analyst for immediate hire.');">
+                <h3>Data Analyst</h3>
+                <p>Posted on: 2024-09-18</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Looked Into</h2>
+            <div class="job-card" onclick="openPopup('Project Manager', 'Exploring opportunities for a Project Manager role.');">
+                <h3>Project Manager</h3>
+                <p>Company: DEF Ltd.</p>
+                <p>Looked into on: 2024-09-15</p>
+            </div>
+            <div class="job-card" onclick="openPopup('Backend Developer', 'Interested in backend development roles.');">
+                <h3>Backend Developer</h3>
+                <p>Company: GHI LLC.</p>
+                <p>Looked into on: 2024-09-10</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Drafts of Ads Posted</h2>
+            <div class="job-card" onclick="openPopup('Marketing Intern', 'Draft for Marketing Intern position.');">
+                <h3>Marketing Intern</h3>
+                <p>Drafted on: 2024-09-26</p>
+            </div>
+            <div class="job-card" onclick="openPopup('Content Writer', 'Draft for Content Writer position.');">
+                <h3>Content Writer</h3>
+                <p>Drafted on: 2024-09-24</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for Job Details -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">×</button>
+            <h2 id="popup-title">Job Title</h2>
+            <p id="popup-description">Job Description</p>
+            <button class="apply-btn">Contact</button>
+        </div>
+    </div>
+
+    <script>
+        function openPopup(title, description) {
+            document.getElementById('popup-title').innerText = title;
+            document.getElementById('popup-description').innerText = description;
+            document.getElementById('popup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function toggleEditForm() {
+            const form = document.getElementById('edit-form');
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+            document.getElementById('edit-name').value = document.getElementById('user-name').innerText;
+            document.getElementById('edit-email').value = document.getElementById('user-email').innerText;
+        }
+
+        function saveDetails() {
+            const name = document.getElementById('edit-name').value;
+            const email = document.getElementById('edit-email').value;
+            document.getElementById('user-name').innerText = name;
+            document.getElementById('user-email').innerText = email;
+            toggleEditForm(); // Hide the edit form after saving
+        }
+    </script>
+
+</body>
+</html>
